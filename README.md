@@ -1,3 +1,6 @@
 # Animated_Websites
 
-1. Visual Domain - project_1 -> https://vercel.com/shani-tiwaris-projects-4c0749de/animated-websites/7QAAAqVxtQQALt1KuRSTjrf87MVe
+1. Visual Domain - project_1
+https://animated-websites-xi.vercel.app/
+3. K72 - project_2
+https://k72-henna.vercel.app/
