@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@font-face{
+    font-family: f1;
+    src: url('/fonts/Lausanne-300.woff2');
+    
+}
+@font-face{
+    font-family: f2;
+    src: url('/fonts/Lausanne-500.woff2');
+}
+body{
+    overflow-x: hidden;
+    background: #706b6b;
+}
+
+@media (min-width: 768px) {
+  .movex {
+    animation: moveAnimation 13s linear infinite;
+  }
+}
+@media (max-width: 767px) {
+  .movex {
+    animation: none !important;
+  }
+}
+@keyframes moveAnimation {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.moveLink{
+    opacity: 0;
+    transition: all ease 0.5s;
+}
+@media (max-width: 767px){
+    .moveLink{
+        display: none;
+    }
+}
+.link:hover .moveLink{
+    opacity: 1;
+}
