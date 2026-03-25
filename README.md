@@ -1,6 +1,4 @@
 # Animated_Websites
 
-1. Visual Domain - project_1
-https://animated-websites-xi.vercel.app/
-3. K72 - project_2
-https://k72-henna.vercel.app/
+1. Visual Domain - https://visual-domain-i.vercel.app/
+2. K72 - https://k72-ii.vercel.app/
