@@ -21,12 +21,12 @@ function App() {
   useGSAP(
     () => {
       const container = ref.current;
-      const letters = gsap.utils.toArray(".letter", container);
-      const masks = gsap.utils.toArray(".mask", container);
-      const remains = gsap.utils.toArray(".remain", container);
-      const groupEls = gsap.utils.toArray(".group", container);
-      const hero = container.querySelector(".hero");
-      const intro = container.querySelector(".intro");
+      const letters   = gsap.utils.toArray(".letter", container);
+      const masks     = gsap.utils.toArray(".mask", container);
+      const remains   = gsap.utils.toArray(".remain", container);
+      const groupEls  = gsap.utils.toArray(".group", container);
+      const hero      = container.querySelector(".hero");
+      const intro     = container.querySelector(".intro");
 
       // Measure BEFORE any transform is applied
       const box = container.getBoundingClientRect();
