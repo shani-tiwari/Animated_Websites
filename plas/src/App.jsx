@@ -21,12 +21,12 @@ function App() {
   useGSAP(
     () => {
       const container = ref.current;
-      const letters   = gsap.utils.toArray(".letter", container);
-      const masks     = gsap.utils.toArray(".mask", container);
-      const remains   = gsap.utils.toArray(".remain", container);
-      const groupEls  = gsap.utils.toArray(".group", container);
-      const hero      = container.querySelector(".hero");
-      const intro     = container.querySelector(".intro");
+      const letters = gsap.utils.toArray(".letter", container);
+      const masks = gsap.utils.toArray(".mask", container);
+      const remains = gsap.utils.toArray(".remain", container);
+      const groupEls = gsap.utils.toArray(".group", container);
+      const hero = container.querySelector(".hero");
+      const intro = container.querySelector(".intro");
 
       // Measure BEFORE any transform is applied
       const box = container.getBoundingClientRect();
@@ -52,42 +52,54 @@ function App() {
         filter: "blur(0px)",
         duration: 0.7,
         ease: "power2.out",
-        stagger: 0.3,
+        stagger: 0.2,
       })
-      // 2) Letters + masks move to the left column, remains reveal together
-        .to([letters, masks], { x: 0, duration: 0.9, ease: "power3.inOut" }, "+=0.2")
+        // 2) Letters + masks move to the left column, remains reveal together
+        .to(
+          [letters, masks],
+          { x: 0, duration: 0.9, ease: "power3.inOut" },
+          "+=0.2",
+        )
         .to(remains, { xPercent: 0, duration: 0.9, ease: "power3.inOut" }, "<")
 
-      // 3) Split phase: hero scales to 0.3 and groups move apart, together
-      .addLabel("split", "+=0.4")
-      .to(hero, { scale: 0.3, duration: 0.6, ease: "power3.inOut" }, "split")
-      .to(
-        groupEls[0],
-        { x: () => -window.innerWidth * 0.2, duration: 0.7, ease: "power2.inOut" },
-        "split"
-      )
-      .to(
-        groupEls[1],
-        { x: () => window.innerWidth * 0.2, duration: 0.7, ease: "power2.inOut" },
-        "split"
-      )
+        // 3) Split phase: hero scales to 0.3 and groups move apart, together
+        .addLabel("split", "+=0.4")
+        .to(hero, { scale: 0.3, duration: 0.6, ease: "power3.inOut" }, "split")
+        .to(
+          groupEls[0],
+          {
+            x: () => -window.innerWidth * 0.2,
+            duration: 0.7,
+            ease: "power2.inOut",
+          },
+          "split",
+        )
+        .to(
+          groupEls[1],
+          {
+            x: () => window.innerWidth * 0.2,
+            duration: 0.7,
+            ease: "power2.inOut",
+          },
+          "split",
+        )
 
-      // 0.2s break, then expand phase: hero grows while the text scales out and fades
-      .addLabel("expand", "+=0.2")
-      .to(hero, { scale: 1, duration: 1.6, ease: "power3.inOut" }, "expand")
-      .to(
-        groupEls,
-        {
-          scale: 0.5,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.in",
-          onComplete: () => gsap.set(intro, { display: "none" }),
-        },
-        "expand"
-      );
+        // 0.2s break, then expand phase: hero grows while the text scales out and fades
+        .addLabel("expand", "+=0.2")
+        .to(hero, { scale: 1, duration: 1.6, ease: "power3.inOut" }, "expand")
+        .to(
+          groupEls,
+          {
+            scale: 0.5,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.in",
+            onComplete: () => gsap.set(intro, { display: "none" }),
+          },
+          "expand",
+        );
     },
-    { scope: ref }
+    { scope: ref },
   );
 
   return (
@@ -95,10 +107,30 @@ function App() {
       ref={ref}
       className="relative w-screen h-screen overflow-hidden bg-black"
     >
-
       {/* Hero: sits behind the text, scales from 0 to full screen */}
-      <section className="hero absolute inset-0 z-0 bg-indigo-600">
-        {/* hero content goes here later */}
+      <section className="hero relative w-full h-full inline-flex">
+        <div className="img w-full h-full absolute">
+          <img className=" w-full h-full object-cover" src="./ass-1.webp" />
+          <div className="overlay absolute inset-0 bg-black/40" />
+        </div>
+
+        <div className="content z-20 w-full h-full p-8 flex flex-col justify-between">
+          <div className="navbar w-full py-2 px-4 flex justify-between items-center">
+            <div className="logo text-xl text-white tracking-wide">LPAS</div>
+            <div className="menu flex items-center gap-4">
+              <div className="text px-3 py-0.5 text-white bg-black/40 rounded-md">
+                Menu
+              </div>
+              <div className="icon"></div>
+            </div>
+          </div>
+          {/* need this text on bottom */}
+          <div className="herobody w-full h-fit ">
+            <h1 className="text-8xl px-4 max-w-5xl text-white tracking-tight">
+              We are a process driven architecture and interior design studio
+            </h1>
+          </div>
+        </div>
       </section>
 
       {/* Intro text layer: sits on top of the hero */}
@@ -121,11 +153,8 @@ function App() {
           ))}
         </div>
       </div>
-
-
     </main>
   );
 }
 
 export default App;
-
