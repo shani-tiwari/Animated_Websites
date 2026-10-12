@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const groups = [
   [
@@ -33,12 +34,11 @@ export default function Intro({ heroRef }) {
       const groupEls  =  gsap.utils.toArray(".group", container);
       const intro     =  container.querySelector(".intro");
 
-      // const img       =  hero_ref.querySelector(".img");
-      // const overlay   =  hero_ref.querySelector(".overlay");
-      // const navbar    =  hero_ref.querySelector(".navbar");
-      // const herobody  =  hero_ref.querySelector(".herobody");
+      const slides = hero_ref.querySelector(".slides");
+
+
       const q = gsap.utils.selector(hero_ref);
-      const [img, overlay, navbar, herobody] = [".img", ".overlay", ".navbar", ".herobody"].map(i => q(i)[0]);
+      const [img, navbar, herobody] = [".img", ".navbar", ".herobody"].map(i => q(i)[0]);
 
       // Measure BEFORE any transform is applied
       const box = container.getBoundingClientRect();
@@ -58,10 +58,14 @@ export default function Intro({ heroRef }) {
       gsap.set(remains, { xPercent: -100 });
       gsap.set(img,    { scale: 0 });
 
+      gsap.set(slides, { xPercent: 100 }); // wrapper waits fully off-screen right
+
       document.body.style.overflow='hidden';
       const tl = gsap.timeline({onComplete: () => {
         heroRef.current.removeAttribute("inert"); // Unlock hero, focusable and clickable by screen readers. 
         document.body.style.overflow = "";
+
+        ScrollTrigger.refresh();
       }});
 
       // 1) First letters appear one by one in the center
@@ -109,9 +113,10 @@ export default function Intro({ heroRef }) {
         ease: "power2.in",
         onComplete: () => gsap.set(intro, { display: "none" })  // imp***
       }, "expand")
-      .from([overlay,navbar, herobody], {
-        opacity: 0, y: 8, duration: 0.8, ease: "power2.inOut", stagger: 0.5
-      }, '>-0.05')
+      .from([navbar, herobody], {
+         opacity: 0, y: 8, duration: 0.8, ease: "power2.inOut", stagger: 0.5
+      }, "<0.5")
+      .to(slides, { xPercent: 0, duration: 0.8, ease: "power3.out" }, ">");
     },
     { scope: ref },
   );

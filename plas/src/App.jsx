@@ -1,25 +1,24 @@
 
 import { useRef } from "react";
 import Hero from "./pages/Hero";
-// import Intro from "./component/IntroTimeline";
+import Work from "./pages/Work";
+import Intro from "./component/IntroTimeline";
 
 
 function App() {
   const heroRef = useRef(null);
 
   return (
-    <main className="relative w-screen h-fit bg-black">
+    <main className="relative w-screen h-fit bg-black ">
 
       {/* Hero: sits behind the text, scales from 0 to full screen */}
       <Hero heroRef={heroRef} />
-      
-      <div className="w-full h-screen bg-black z-99">
 
-      </div>
+      <Work/>
 
 
         {/* Intro text layer: sits on top of the hero */}
-      {/* <Intro heroRef={heroRef} /> */}
+      <Intro heroRef={heroRef} />
 
     </main>
   );
