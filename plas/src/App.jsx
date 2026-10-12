@@ -8,13 +8,17 @@ function App() {
   const heroRef = useRef(null);
 
   return (
-    <main className="relative h-dvh w-screen overflow-hidden bg-black">
+    <main className="relative w-screen h-fit bg-black">
 
       {/* Hero: sits behind the text, scales from 0 to full screen */}
       <Hero heroRef={heroRef} />
+      
+      <div className="w-full h-screen bg-black z-99">
+
+      </div>
 
 
-      {/* Intro text layer: sits on top of the hero */}
+        {/* Intro text layer: sits on top of the hero */}
       {/* <Intro heroRef={heroRef} /> */}
 
     </main>
