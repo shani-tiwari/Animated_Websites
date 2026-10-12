@@ -1,7 +1,7 @@
 
 import { useRef } from "react";
 import Hero from "./pages/Hero";
-import Intro from "./component/IntroTimeline";
+// import Intro from "./component/IntroTimeline";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
 
       {/* Intro text layer: sits on top of the hero */}
-      <Intro heroRef={heroRef} />
+      {/* <Intro heroRef={heroRef} /> */}
 
     </main>
   );
