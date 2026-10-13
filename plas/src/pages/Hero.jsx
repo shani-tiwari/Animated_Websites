@@ -43,8 +43,8 @@ export default function Hero({heroRef}) {
       { x: () => -(track.scrollWidth - vw()), ease: "none", duration: 1 },
       0
     ).to(overlay, { opacity: 0.9, ease: "none", duration: 1 }, 0)
-    .to(disk, { top: '60%', ease: "none", duration: 1, stagger: 0.4 }, 0)
-    .to(headText, {opacity: 0.1, ease: "none", duration: 1}, 0);
+    .to(disk, { top: '60%', ease: "none", duration: 0.5, stagger: 0.3 }, "<0.3")
+    .to(headText, {opacity: 0.1, ease: "none", duration: 0.5}, 0);
   },
   { scope: heroRef }
 );
