@@ -9,6 +9,10 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Hero({heroRef}) {
 
  useGSAP(() => {
+
+  window.addEventListener("load", () => ScrollTrigger.refresh());
+  document.fonts.ready.then(() => ScrollTrigger.refresh());
+  
   ScrollTrigger.config({ ignoreMobileResize: true });
 
   const track = heroRef.current.querySelector(".track");

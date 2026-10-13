@@ -32,3 +32,7 @@ Setting overflow to "" removes the inline style, which is cleaner than setting "
 
 
 * Reduced motion: if you skip the intro for those users, remove inert and the scroll lock right away in that branch too, or the page stays locked.
+
+browser scroll restoration,
+
+scrollbar styling , gutter stable to keep it same across browsers

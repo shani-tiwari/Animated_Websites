@@ -22,7 +22,10 @@ export default function Intro({ heroRef }) {
 
  
   useGSAP(() => {
-
+    // fixed refresh issue
+    ScrollTrigger.clearScrollMemory("manual");
+    window.scrollTo(0, 0);  // always start the intro from the top
+    ScrollTrigger.refresh();
     const container = ref.current;
     const hero_ref = heroRef.current;
     
@@ -119,6 +122,12 @@ export default function Intro({ heroRef }) {
          opacity: 0, y: 8, duration: 1, ease: "power2.inOut", stagger: 0.5
       }, "<0.7")
       .to(slides, { xPercent: 0, duration: 0.8, ease: "power3.out" }, ">");
+
+      // clean up what GSAP doesn’t revert
+      return () => {
+        document.body.style.overflow = "";
+        heroRef.current?.removeAttribute("inert");
+      };
     },
     { scope: ref },
   );
