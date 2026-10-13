@@ -42,12 +42,12 @@ export default function Intro({ heroRef }) {
 
       // Measure BEFORE any transform is applied
       const box = container.getBoundingClientRect();
-      const centerX = box.left + box.width / 2;  // center point of container - from left edge of viewport + half of width of element(box)
+      const centerX = box.left + (box.width / 2);  // center point of container - from left edge of viewport + half of width of element(box)
 
       // returns a array of - distance of each letter from center of container
       const offsets = letters.map((el) => {
         const r = el.getBoundingClientRect();
-        return centerX - (r.left + r.width / 2);
+        return centerX - (r.left + (r.width / 2));
         // ^ where I want to be   ^ where the letter's own center is now 
       });
 
@@ -60,10 +60,10 @@ export default function Intro({ heroRef }) {
 
       gsap.set(slides, { xPercent: 100 }); // wrapper waits fully off-screen right
 
-      document.body.style.overflow='hidden';
+      // document.body.style.overflow='hidden';
       const tl = gsap.timeline({onComplete: () => {
         heroRef.current.removeAttribute("inert"); // Unlock hero, focusable and clickable by screen readers. 
-        document.body.style.overflow = "";
+        // document.body.style.overflow = ""; if we lock it in start it will appear suddenly after intro animation - don't want
 
         ScrollTrigger.refresh();
       }});
