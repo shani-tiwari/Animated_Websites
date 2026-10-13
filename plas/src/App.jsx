@@ -4,6 +4,7 @@ import Hero from "./pages/Hero";
 import Work from "./pages/Work";
 import Intro from "./component/IntroTimeline";
 import Gallery from "./pages/Gallery";
+import Footer from "./pages/Footer";
 
 
 function App() {
@@ -15,13 +16,12 @@ function App() {
       {/* Hero: sits behind the text, scales from 0 to full screen */}
       <Hero heroRef={heroRef} />
 
-      <Work/>
-      
-      <Gallery />
-
-
-        {/* Intro text layer: sits on top of the hero */}
+      {/* Intro text layer: sits on top of the hero */}
       <Intro heroRef={heroRef} />
+
+      <Work/>
+      <Gallery/>
+      <Footer/>
 
     </main>
   );

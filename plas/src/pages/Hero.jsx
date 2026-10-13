@@ -21,8 +21,8 @@ export default function Hero({heroRef}) {
 
   const PEEK = 0.1;
   
-  gsap.set(overlay, { opacity: 0.6 }); 
-  gsap.set(disk, { top: '50%' }); 
+  gsap.set(overlay, { opacity: 0.3 }); 
+  gsap.set(disk, { top: '45%' }); 
   gsap.set(headText, { opacity: 1 }); 
 
    const tl = gsap.timeline({
@@ -43,7 +43,7 @@ export default function Hero({heroRef}) {
       { x: () => -(track.scrollWidth - vw()), ease: "none", duration: 1 },
       0
     ).to(overlay, { opacity: 0.9, ease: "none", duration: 1 }, 0)
-    .to(disk, { top: '60%', ease: "none", duration: 0.5, stagger: 0.3 }, "<0.3")
+    .to(disk, { top: '60%', ease: "none", duration: 0.6, stagger: 0.2 }, "<0.3")
     .to(headText, {opacity: 0.1, ease: "none", duration: 0.5}, 0);
   },
   { scope: heroRef }

@@ -1,26 +1,16 @@
 
 
+
+const images = [{main: '1', vig: '5'}, {main: '2', vig: '7'}, {main: '3', vig: '8'}];
+
 export default function Gallery(){
-    return(
-        <div className="h-fit w-full relative flex flex-col items-center overflow-hidden">
-
-            <Images/>
-            
-        </div>
-    )
-};
-
-const images = [{main: '1', vig: '5'}, {main: '2', vig: '7'}, {main: '3', vig: '8'}]
-
-function Images(){
     return (
         
         images.map(imgC => {
             return (
-                <>
                 <div 
-                style={{clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)'}} 
-                className="h-fit w-full relative flex flex-col items-center overflow-hidden"
+                 style={{clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)'}} 
+                 className="h-fit w-full relative flex flex-col items-center overflow-hidden"
                 >
                     <div className="img-container w-full h-full relative ">
                         <img className="w-full max-h-[80vh] h-full object-cover" src={`/ass-${imgC.main}.webp`}/>  
@@ -29,7 +19,6 @@ function Images(){
                         <img className="w-full h-full object-cover" src={`/ass-${imgC.vig}.webp`}/>    
                     </div>
                 </div>
-                </>
             )
         })
         
