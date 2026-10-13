@@ -47,7 +47,7 @@ export default function Intro({ heroRef }) {
       // returns a array of - distance of each letter from center of container
       const offsets = letters.map((el) => {
         const r = el.getBoundingClientRect();
-        return centerX - (r.left + (r.width / 2));
+        return centerX - (r.left + (r.width / 2)); 
         // ^ where I want to be   ^ where the letter's own center is now 
       });
 
@@ -60,11 +60,13 @@ export default function Intro({ heroRef }) {
 
       gsap.set(slides, { xPercent: 100 }); // wrapper waits fully off-screen right
 
-      // document.body.style.overflow='hidden';
+      const doc = document.body.style;
+      doc.overflow='hidden';
       const tl = gsap.timeline({onComplete: () => {
         heroRef.current.removeAttribute("inert"); // Unlock hero, focusable and clickable by screen readers. 
-        // document.body.style.overflow = ""; if we lock it in start it will appear suddenly after intro animation - don't want
-
+        doc.overflow = ""; // if we lock it in start it will appear suddenly after intro animation - don't want
+        // either manage it, so it won't affect layout space - scrollbar gutter, y-scroll, or width-none
+        gsap.to(document.querySelector(".scroll-thumb"), { opacity: 1, duration: 0.5 });
         ScrollTrigger.refresh();
       }});
 
@@ -114,8 +116,8 @@ export default function Intro({ heroRef }) {
         onComplete: () => gsap.set(intro, { display: "none" })  // imp***
       }, "expand")
       .from([navbar, herobody], {
-         opacity: 0, y: 8, duration: 0.8, ease: "power2.inOut", stagger: 0.5
-      }, "<0.5")
+         opacity: 0, y: 8, duration: 1, ease: "power2.inOut", stagger: 0.5
+      }, "<0.7")
       .to(slides, { xPercent: 0, duration: 0.8, ease: "power3.out" }, ">");
     },
     { scope: ref },

@@ -5,6 +5,7 @@ import Work from "./pages/Work";
 import Intro from "./component/IntroTimeline";
 import Gallery from "./pages/Gallery";
 import Footer from "./pages/Footer";
+import ScrollThumb from "./component/ScrollThumb";
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <main className="relative w-full h-fit bg-black ">
-
+      <ScrollThumb/>
       {/* Hero: sits behind the text, scales from 0 to full screen */}
       <Hero heroRef={heroRef} />
 

@@ -21,7 +21,7 @@ export default function Hero({heroRef}) {
 
   const PEEK = 0.1;
   
-  gsap.set(overlay, { opacity: 0.3 }); 
+  gsap.set(overlay, { opacity: 0.5 }); 
   gsap.set(disk, { top: '45%' }); 
   gsap.set(headText, { opacity: 1 }); 
 
@@ -50,7 +50,7 @@ export default function Hero({heroRef}) {
 );
 
   return (
-    <section ref={heroRef} className="hero relative h-screen w-full overflow-hidden">
+    <section ref={heroRef} className="hero relative h-screen w-full overflow-hidden"> 
       {/* z-0: background */}
       <div className="img absolute inset-0 z-0 pointer-events-none">
         <img className="h-full w-full object-cover" src="/ass-1.webp" alt="" />
